@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<section class="mx-6">
+  <h1 class="title is-2">{{ post }}</h1>
+  <p class="subtitle is-6 is-italic">Published on {{ post.created_on }} by {{ post.author }}</p>
+  <hr>
+  <p class="block">{{ post.content }}</p>
+  <hr>
+  <a href="/">Back to all posts</a>
+</section>
+{% endblock content %}

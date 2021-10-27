@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<section class="mx-6">
+  {% for post in object_list %}
+  <div class="box">
+    <h1 class="title is-2">{{ post }}</h1>
+    <p class="subtitle is-6 is-italic">
+      Published on {{ post.created_on }} by {{ post.author }}
+    </p>
+    <p class="block">{{ post.content|truncatechars:60 }}</p>
+    <a href="{{ post.get_absolute_url }}">Read Post</a>
+  </div>
+  {% endfor %}
+  <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+    {% if page_obj.has_previous %}
+    <a
+      class="pagination-previous"
+      href="?page={{ page_obj.previous_page_number }}"
+      >Previous</a
+    >
+    <div class="pagination-list">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </div>
+    {% endif %} {% if page_obj.has_next %}
+    <a class="pagination-next" href="?page={{ page_obj.paginator.num_pages }}"
+      >Next page</a
+    >
+    {% endif %}
+  </nav>
+</section>
+{% endblock content %}
